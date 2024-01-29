@@ -1,10 +1,20 @@
 package fileserver.FileServer.model;
 
 import lombok.Data;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 
 @Data
-@AllArgsConstructor
+@Entity
+@Table(name = "files")
 public class File {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "url")
+    private String url;
 }
+// File
