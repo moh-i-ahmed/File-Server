@@ -1,6 +1,5 @@
 package fileServer.FileServer.controller;
 
-import fileServer.FileServer.model.File;
 import fileServer.FileServer.dto.FileInfo;
 import fileServer.FileServer.service.FileService;
 import org.springframework.web.bind.annotation.*;

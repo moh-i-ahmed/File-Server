@@ -30,7 +30,7 @@ public class FileServerApplication {
         return (args) -> {
             fileService.init();
 
-            // Load initial test files from src/main/resources/initialFiles
+            // Load initial test files from 'src/main/resources/initialFiles'
             Resource initialFilesResource = resourceLoader.getResource("classpath:initialFiles");
             File initialFilesDir = initialFilesResource.getFile();
 
@@ -58,3 +58,4 @@ public class FileServerApplication {
         }
     }
 }
+// FileServerApplication
