@@ -64,9 +64,8 @@ public class FileServiceImpl implements FileService {
                 return resource;
             }
         } catch (MalformedURLException  e) {
-            System.err.println("Could not load file!");
+            throw new RuntimeException("Could not load the file. Error: " + e.getMessage(), e);
         }
-        return null;
     }
 
     @Override
@@ -75,7 +74,6 @@ public class FileServiceImpl implements FileService {
             log.info("All files loaded!");
             return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
         } catch (IOException  e) {
-            
             throw new RuntimeException("Could not load all files!", e);
         }
     }
