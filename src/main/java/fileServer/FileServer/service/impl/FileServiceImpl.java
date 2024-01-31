@@ -1,9 +1,8 @@
-@ -1,87 +0,0 @@
-package fileserver.FileServer.service.impl;
+package fileServer.FileServer.service.impl;
 
-import fileserver.FileServer.model.File;
-import fileserver.FileServer.repository.FileRepository;
-import fileserver.FileServer.service.FileService;
+import fileServer.FileServer.model.File;
+import fileServer.FileServer.repository.FileRepository;
+import fileServer.FileServer.service.FileService;
 import org.springframework.stereotype.Service;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -27,10 +26,10 @@ public class FileServiceImpl implements FileService {
     @Override
     public void init() {
         try {
+            // create uploads directory at project root
             Files.createDirectories(root);
-            System.out.println("FileService initialized!");
+            log.info("FileService initialized!");
         } catch (IOException  e) {
-            System.err.println("Could not initialize FileService!");
             throw new RuntimeException("Could not initialize folder for upload!", e);
         }
     }
@@ -45,43 +44,39 @@ public class FileServiceImpl implements FileService {
             fileEntity.setName(file.getOriginalFilename());
             fileEntity.setUrl(this.root.resolve(file.getOriginalFilename()).toString());
             fileRepository.save(fileEntity);
-            System.out.println("File saved!");
+            log.info("File saved!");
         } catch (Exception e) {
-            log.error("Could not store the file. Error: ", e);
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage(), e);
         }
     }
 
     @Override
-    public UrlResource load(String filename) {
-        Boolean success = false;
+    public Resource load(String filename) {
         try {
             Path file = root.resolve(filename);
-            UrlResource resource = new UrlResource(file.toUri());
-            System.out.println("File loaded!");
-            return resource;
+            Resource resource = new UrlResource(file.toUri());
+            log.info("File loaded!");
 
-            // if (!resource.exists() || !resource.isReadable()) {
-            //     log.error("Could not load, file does not exist!");
-            //     throw new RuntimeException("Could not load, file does not exist!");
-            // } else {
-            //     success = true;
-            // }
-            // System.out.println("File loaded!");
-            // return resource;
+            if (!resource.exists() || !resource.isReadable()) {
+                throw new RuntimeException("Could not load, file does not exist!");
+            } else {
+                log.info("Loaded file:" + resource.getFilename());
+                return resource;
+            }
         } catch (MalformedURLException  e) {
             System.err.println("Could not load file!");
         }
+        return null;
     }
 
     @Override
     public Stream<Path> loadAll() {
         try {
-            System.out.println("All files loaded!");
+            log.info("All files loaded!");
             return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
         } catch (IOException  e) {
-            log.error("Could not load all files!", e);
-            throw new RuntimeException("Could not load the files!", e);
+            
+            throw new RuntimeException("Could not load all files!", e);
         }
     }
 }
