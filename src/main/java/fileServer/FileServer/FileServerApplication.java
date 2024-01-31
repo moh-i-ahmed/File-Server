@@ -1,4 +1,4 @@
-package fileserver.FileServer;
+package fileServer.FileServer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

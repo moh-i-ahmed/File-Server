@@ -1,10 +1,10 @@
-package fileserver.FileServer.controller;
+package fileServer.FileServer.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fileserver.FileServer.model.File;
-import fileserver.FileServer.service.FileService;
+import fileServer.FileServer.model.File;
+import fileServer.FileServer.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,4 +34,4 @@ public class FileController {
     }
     
 }
-// FileController
+// FileControlle

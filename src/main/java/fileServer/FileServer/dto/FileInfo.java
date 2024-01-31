@@ -1,4 +1,4 @@
-package fileserver.FileServer.dto;
+package fileServer.FileServer.dto;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;

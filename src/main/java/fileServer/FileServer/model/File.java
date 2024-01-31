@@ -1,4 +1,4 @@
-package fileserver.FileServer.model;
+package fileServer.FileServer.model;
 
 import lombok.Data;
 import jakarta.persistence.*;

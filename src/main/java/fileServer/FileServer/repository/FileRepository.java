@@ -1,6 +1,6 @@
-package fileserver.FileServer.repository;
+package fileServer.FileServer.repository;
 
-import fileserver.FileServer.model.File;
+import fileServer.FileServer.model.File;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

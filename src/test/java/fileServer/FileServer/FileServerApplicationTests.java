@@ -1,4 +1,4 @@
-package fileserver.FileServer;
+package fileServer.FileServer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
