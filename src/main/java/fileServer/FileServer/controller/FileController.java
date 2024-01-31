@@ -43,9 +43,13 @@ public class FileController {
     }
 
     @PostMapping("/upload")
-    public void uploadFile(@RequestBody File entity) {
-        //TODO: process POST request
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+        try {
+            fileService.save(file);
+            return ResponseEntity.ok("File uploaded successfully: " + file.getOriginalFilename());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Could not upload the file: " + file.getOriginalFilename() + "!");
+        }
     }
-    
 }
 // FileController
