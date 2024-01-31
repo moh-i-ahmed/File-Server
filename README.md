@@ -46,34 +46,3 @@ This application has been developed and tested **only** with the following, plea
 **File Server:** The file server code is located in the folder ```File-Server\src\main\java\fileServer\FileServer```
 
 **Unit tests:** The unit tests are located in ```File-Server\src\test\java\fileServer\FileServer\FileServerEndpointTests.java```
-
-📦src
- ┣ 📂main
- ┃ ┣ 📂java
- ┃ ┃ ┗ 📂fileServer
- ┃ ┃ ┃ ┗ 📂FileServer
- ┃ ┃ ┃ ┃ ┣ 📂controller
- ┃ ┃ ┃ ┃ ┃ ┗ 📜FileController.java
- ┃ ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┃ ┗ 📜FileInfo.java
- ┃ ┃ ┃ ┃ ┣ 📂model
- ┃ ┃ ┃ ┃ ┃ ┗ 📜File.java
- ┃ ┃ ┃ ┃ ┣ 📂repository
- ┃ ┃ ┃ ┃ ┃ ┗ 📜FileRepository.java
- ┃ ┃ ┃ ┃ ┣ 📂service
- ┃ ┃ ┃ ┃ ┃ ┣ 📂impl
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜FileServiceImpl.java
- ┃ ┃ ┃ ┃ ┃ ┗ 📜FileService.java
- ┃ ┃ ┃ ┃ ┗ 📜FileServerApplication.java
- ┃ ┗ 📂resources
- ┃ ┃ ┣ 📂initialFiles
- ┃ ┃ ┃ ┣ 📜open_me.txt
- ┃ ┃ ┃ ┗ 📜spring_boot_cli_banner.png
- ┃ ┃ ┣ 📂static
- ┃ ┃ ┣ 📂templates
- ┃ ┃ ┗ 📜application.properties
- ┗ 📂test
- ┃ ┗ 📂java
- ┃ ┃ ┗ 📂fileServer
- ┃ ┃ ┃ ┗ 📂FileServer
- ┃ ┃ ┃ ┃ ┗ 📜FileServerEndpointTests.java
