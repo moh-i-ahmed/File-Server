@@ -1,15 +1,17 @@
 package fileServer.FileServer.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import fileServer.FileServer.model.File;
+import fileServer.FileServer.dto.FileInfo;
 import fileServer.FileServer.service.FileService;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/files")
@@ -19,19 +21,27 @@ public class FileController {
     private final FileService fileService;
 
     @GetMapping("/")
-    public void getAllFiles() {
+    public ResponseEntity<List<FileInfo>> getListFiles() {
+        List<FileInfo> fileInfos = fileService.loadAll().map(path -> {
+            String filename = path.getFileName().toString();
+            String url = MvcUriComponentsBuilder.fromMethodName(FileController.class,
+                    "getFile", path.getFileName().toString()).build().toString();
+
+            return new FileInfo(filename, url);
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.ok(fileInfos);
+    }
+    
+    @GetMapping("/filename")
+    public void getFile(@RequestParam String filename) {
         // TODO: process GET request
     }
 
-    @GetMapping("/filename")
-    public void getAllFiles(@RequestParam String filenameString) {
-        // TODO: process GET request
-    }
-    
     @PostMapping("/upload")
     public void uploadFile(@RequestBody File entity) {
         //TODO: process POST request
     }
     
 }
-// FileControlle
+// FileController
